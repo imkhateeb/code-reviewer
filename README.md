@@ -67,99 +67,31 @@ code-reviewer/
 2. Authentication page: From here we can logged in using Github. Other authentication methods are added just for dummy purpose.
    ![Screenshot 2024-12-24 182807](https://github.com/user-attachments/assets/1fb05c91-d053-46ce-a86e-94e0a4003f7a)
 3. Repositories page: Here you can see all your github repositories.
-   
-6. **[Feature 4]**: [Brief description]
-
----
-
-## 🔧 Setup Instructions
-
-Follow these steps to set up the project locally:
-
-### Prerequisites
-- Node.js installed (v16 or later)
-- MongoDB/MySQL set up locally or on a cloud platform
-- Git installed
-
-### Steps
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/imkhateeb/code-reviewer.git
-   cd code-reviewer
-   ```
-
-2. Install dependencies for both frontend and backend:
-   ```bash
-   cd client
-   npm install
-   cd ../server
-   npm install
-   ```
-
-3. Configure environment variables:
-   - Create a `.env` file in the `server` directory.
-   - Add the following variables:
-     ```
-     PORT=5000
-     DATABASE_URL=your-database-url
-     JWT_SECRET=your-secret-key
-     ```
-
-4. Start the development servers:
-   - Frontend:
-     ```bash
-     cd client
-     npm run dev
-     ```
-   - Backend:
-     ```bash
-     cd server
-     npm run dev
-     ```
-
-5. Open the application:
-   - Frontend: `http://localhost:3000`
-   - Backend API: `http://localhost:5000/api`
-
+   ![Screenshot 2024-12-24 182937](https://github.com/user-attachments/assets/8845af1f-7ec1-4337-af3b-83504a525110)
+4. Profile page: Here user can see there github profile.
+   ![Screenshot 2024-12-24 184147](https://github.com/user-attachments/assets/be753743-be12-4252-baa1-fdb9a2a6247f)
 ---
 
 ## 📋 API Documentation
 
 ### Base URL
-`http://localhost:5000/api`
+`http://localhost:3333`
 
 ### Endpoints
-1. **GET /api/example**
-   - Description: Fetches example data.
-   - Response: `{ "data": [...] }`
+1. **GET /users/token**
+   - Description: Get github token to make resource requests.
 
-2. **POST /api/example**
-   - Description: Submits example data.
-   - Payload: `{ "key": "value" }`
-   - Response: `{ "message": "Success" }`
+2. **GET /users/repository**
+   - Description: Fetches user's github repository.
 
-[Add more endpoints as necessary.]
-
----
-
-## 🧪 Testing
-
-Run tests using the following commands:
-
-```bash
-# Frontend tests
-cd client
-npm test
-
-# Backend tests
-cd server
-npm test
-```
+3. **GET /users**
+   - Description: Fetches user's github profile data.
 
 ---
 
 ## 🚀 Deployment
 
-The project is deployed on [platform name]. Access the live version at:
-
+Frontend is deployed on Vercel. Access the live version at:
 [Deployment URL]
+
+Backend is deployed on render.
