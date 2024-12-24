@@ -25,17 +25,21 @@ const Navbar = () => {
       </div>
 
       {toggleNavbar && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex flex-col z-50">
-          <div className="bg-white w-full h-2/3 flex flex-col p-4 gap-4">
+        <div className="fixed fade-up inset-0 bg-gray-800 bg-opacity-50 flex flex-col z-50">
+          <div className="bg-white slight-up w-full h-2/3 flex flex-col p-4 gap-4">
             {/* Topbar */}
             <div className="w-full flex items-center justify-between">
-              <Link to={"/"} className="flex gap-2 items-center">
+              <Link
+                onClick={() => setHovered(null)}
+                to={"/"}
+                className="flex gap-2 items-center"
+              >
                 <img src={blackLogo} alt="logo" className="w-[35px] h-[35px]" />
                 <p className="text-xl medium-poppins">CodeAnt AI</p>
               </Link>
               <div
                 onClick={() => setToggleNavbar(false)}
-                className="cursor-pointer"
+                className="cursor-pointer shrink-effect"
               >
                 <X size={26} weight="bold" />
               </div>
@@ -43,9 +47,12 @@ const Navbar = () => {
 
             {/* Navigations */}
             <Link
-              onClick={() => setToggleNavbar(false)}
+              onClick={() => {
+                setHovered(null);
+                setToggleNavbar(false);
+              }}
               to={"/dashboard"}
-              className="p-2.5 border-[2px] border-gray-200 rounded-lg flex justify-between items-center cursor-pointer text-gray-600"
+              className="p-2.5 shrink-effect border-[2px] border-gray-200 rounded-lg flex justify-between items-center cursor-pointer text-gray-600"
             >
               <p className="medium-poppins">@imkhateeb</p>
               <CaretDown size={20} weight="bold" />
@@ -60,7 +67,7 @@ const Navbar = () => {
                   }}
                   onMouseEnter={() => setHovered(item.title)}
                   onMouseLeave={() => setHovered(null)}
-                  className={`flex gap-2 items-center p-2.5 bold-poppins rounded-lg hover:bg-blue-600 hover:text-white cursor-pointer ${
+                  className={`flex shrink-effect gap-2 items-center p-2.5 bold-poppins rounded-lg hover:bg-blue-600 hover:text-white cursor-pointer ${
                     activePath === item.to
                       ? "bg-blue-600 text-white"
                       : "text-gray-600"

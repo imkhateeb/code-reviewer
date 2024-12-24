@@ -67,13 +67,18 @@ const Repositories = () => {
               <button
                 disabled={loadingRepos}
                 onClick={getRepositories}
-                className="flex gap-2 items-center border-[2px] py-2.5 px-4 max-sm:p-3 max-sm:rounded-full rounded-lg cursor-pointer text-gray-500"
+                className="flex gap-2 items-center border-[2px] py-2.5 px-4 max-sm:p-3 max-sm:rounded-full rounded-lg cursor-pointer text-gray-500 shrink-effect"
               >
                 <ArrowsClockwise size={20} weight="bold" />
                 <p className="max-sm:hidden">Refresh All</p>
               </button>
 
-              <div className="flex gap-2 items-center border-[2px] border-blue-600 py-2.5 px-4 max-sm:p-3 max-sm:rounded-full rounded-lg cursor-pointer bg-blue-600 text-white">
+              <div
+                onClick={() => {
+                  errorToast("This feature is not available yet");
+                }}
+                className="flex gap-2 items-center border-[2px] border-blue-600 py-2.5 px-4 max-sm:p-3 max-sm:rounded-full rounded-lg cursor-pointer bg-blue-600 text-white"
+              >
                 <Plus size={20} weight="bold" />
                 <p className="max-sm:hidden">Add Repository</p>
               </div>

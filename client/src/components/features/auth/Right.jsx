@@ -19,7 +19,7 @@ const Right = () => {
   }
   return (
     <div className="p-8 max-sm:p-4 w-full flex items-center h-full justify-center flex-col gap-4">
-      <div className="bg-white rounded-lg border-[1px] border-gray-200 flex flex-col w-full h-[65vh]">
+      <div className="bg-white fade-up rounded-lg border-[1px] border-gray-200 flex flex-col w-full h-[65vh]">
         <div className="p-4 w-full flex flex-col gap-6">
           <div className="flex gap-4 items-center justify-center">
             <img src={blackLogo} alt="logo" />
@@ -31,7 +31,7 @@ const Right = () => {
             </p>
             <div className="w-full bg-[#fafafa] flex rounded-lg border">
               <p
-                className={`w-1/2 py-2.5 text-center items-center cursor-pointer font-semibold ${
+                className={`w-1/2 py-2.5 text-center items-center cursor-pointer font-semibold shrink-effect ${
                   currentTab === "saas"
                     ? "bg-blue-600 rounded-lg text-white "
                     : "text-gray-600"
@@ -41,7 +41,7 @@ const Right = () => {
                 SAAS
               </p>
               <p
-                className={`w-1/2 py-2.5 text-center items-center cursor-pointer font-semibold ${
+                className={`w-1/2 py-2.5 text-center items-center cursor-pointer font-semibold shrink-effect ${
                   currentTab === "self-hosted"
                     ? "bg-blue-600 rounded-lg text-white "
                     : "text-gray-600"
@@ -58,7 +58,7 @@ const Right = () => {
           <div className="p-4 w-full flex flex-col gap-4 justify-evenly items-center">
             <div
               onClick={loginWithGithub}
-              className="flex gap-2 items-center py-2.5 border rounded-lg w-[80%] max-sm:w-full justify-center cursor-pointer"
+              className="flex gap-2 items-center py-2.5 border rounded-lg w-[80%] max-sm:w-full justify-center cursor-pointer shrink-effect"
             >
               <img src={github} alt="github" />
               <p className="font-semibold">Sign in with Github</p>
@@ -68,7 +68,7 @@ const Right = () => {
               onClick={() => {
                 errorToast("Try Signing in with Github!");
               }}
-              className="flex gap-2 items-center py-2.5 border rounded-lg w-[80%] max-sm:w-full justify-center cursor-pointer"
+              className="flex gap-2 items-center py-2.5 border rounded-lg w-[80%] max-sm:w-full justify-center cursor-pointer shrink-effect"
             >
               <img src={bitBucket} alt="bit" />
               <p className="font-semibold">Sign in with Bitbucket</p>
@@ -78,7 +78,7 @@ const Right = () => {
               onClick={() => {
                 errorToast("Try Signing in with Github!");
               }}
-              className="flex gap-2 items-center py-2.5 border rounded-lg w-[80%] max-sm:w-full justify-center cursor-pointer"
+              className="flex gap-2 items-center py-2.5 border rounded-lg w-[80%] max-sm:w-full justify-center cursor-pointer shrink-effect"
             >
               <img src={azureDevops} alt="azure" />
               <p className="font-semibold">Sign in with Azure Devops</p>
@@ -88,7 +88,7 @@ const Right = () => {
               onClick={() => {
                 errorToast("Try Signing in with Github!");
               }}
-              className="flex gap-2 items-center py-2.5 border rounded-lg w-[80%] max-sm:w-full justify-center cursor-pointer"
+              className="flex gap-2 items-center py-2.5 border rounded-lg w-[80%] max-sm:w-full justify-center cursor-pointer shrink-effect"
             >
               <img src={gitlab} alt="gitlab" />
               <p className="font-semibold">Sign in with GitLab</p>
@@ -100,7 +100,7 @@ const Right = () => {
               onClick={() => {
                 errorToast("Try Signing in with Github!");
               }}
-              className="flex gap-2 items-center py-2.5 border rounded-lg w-[80%] max-sm:w-full justify-center cursor-pointer"
+              className="flex gap-2 items-center py-2.5 border rounded-lg w-[80%] max-sm:w-full justify-center cursor-pointer shrink-effect"
             >
               <img src={gitlab} alt="gitlab" />
               <p className="font-semibold">Self Hosted GitLab</p>
@@ -110,7 +110,7 @@ const Right = () => {
               onClick={() => {
                 errorToast("Try Signing in with Github!");
               }}
-              className="flex gap-2 items-center py-2.5 border rounded-lg w-[80%] max-sm:w-full justify-center cursor-pointer"
+              className="flex gap-2 items-center py-2.5 border rounded-lg w-[80%] max-sm:w-full justify-center cursor-pointer shrink-effect"
             >
               <img src={sso} alt="sso" />
               <p className="font-semibold">Sign in with SSO</p>

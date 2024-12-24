@@ -78,7 +78,7 @@ const UserProfile = () => {
         <Link
           to={userGithubData?.html_url}
           target="_blank"
-          className="w-[250px] text-center border p-2.5 rounded-xl border-gray-500 text-gray-500 medium-poppins"
+          className="w-[250px] text-center border p-2.5 rounded-xl border-gray-500 text-gray-500 medium-poppins shrink-effect"
         >
           Edit profile
         </Link>
