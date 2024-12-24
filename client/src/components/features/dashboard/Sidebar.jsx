@@ -12,7 +12,7 @@ const Sidebar = () => {
     setActivePath(window.location.pathname);
   }, []);
   return (
-    <div className="p-5 border-r h-full flex flex-col justify-between">
+    <div className="p-5 border-r h-full flex flex-col justify-between slight-right">
       <div className="flex flex-col gap-4">
         <Link
           onClick={() => setHovered(null)}

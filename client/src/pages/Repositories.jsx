@@ -9,6 +9,7 @@ import SingleRepo from "../components/features/repositories/SingleRepo";
 
 const Repositories = () => {
   const [repositories, setRepositories] = useState([]);
+  const [totalRepos, setTotalRepos] = useState([]);
   const [loadingRepos, setLoadingRepos] = useState(false);
   const navigate = useNavigate();
   const userGithubData = JSON.parse(localStorage.getItem("github_user_data"));
@@ -28,12 +29,24 @@ const Repositories = () => {
       if (data?.success) {
         successToast(`${data?.data?.length} repositories fetched successfully`);
         setRepositories(data?.data);
+        setTotalRepos(data?.data);
       }
     } catch (error) {
       console.log(error);
       errorToast(error?.response?.data?.message || "Something went wrong");
     } finally {
       setLoadingRepos(false);
+    }
+  };
+
+  const handleSearchTerm = (value) => {
+    if (value) {
+      const filteredRepos = totalRepos.filter((repo) =>
+        repo?.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setRepositories(filteredRepos);
+    } else {
+      setRepositories(totalRepos);
     }
   };
   useEffect(() => {
@@ -95,6 +108,7 @@ const Repositories = () => {
               type="text"
               placeholder="Search repositories"
               className="py-2 w-full rounded-lg outline-none focus:outline-none active:outline-none"
+              onChange={(e) => handleSearchTerm(e.target.value)}
             />
           </div>
         </div>
