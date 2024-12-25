@@ -3,6 +3,7 @@ import { blackLogo, logout, support } from "../../../assets";
 import { CaretDown, List, X } from "@phosphor-icons/react";
 import dashboardNavigations from "../../../utils/dashboardNavigations";
 import { Link } from "react-router-dom";
+import errorToast from "../../shared/toasters/error-toast";
 
 const Navbar = () => {
   const [toggleNavbar, setToggleNavbar] = useState(false);
@@ -83,7 +84,10 @@ const Navbar = () => {
               ))}
               <div className="flex flex-col">
                 <div
-                  onClick={() => setToggleNavbar(false)}
+                  onClick={() => {
+                    setToggleNavbar(false),
+                      errorToast("Feature not available yet");
+                  }}
                   className="flex gap-1 items-center p-2.5 hover:bg-gray-100 cursor-pointer rounded-lg"
                 >
                   <img src={support} alt="support" />

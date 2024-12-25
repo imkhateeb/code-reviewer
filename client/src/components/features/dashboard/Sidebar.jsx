@@ -3,6 +3,7 @@ import { CaretDown } from "@phosphor-icons/react";
 import dashboardNavigations from "../../../utils/dashboardNavigations";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import errorToast from "../../shared/toasters/error-toast";
 
 const Sidebar = () => {
   const [activePath, setActivePath] = useState(null);
@@ -56,7 +57,12 @@ const Sidebar = () => {
         </div>
       </div>
       <div className="flex flex-col">
-        <div className="flex shrink-effect gap-1 items-center p-2.5 hover:bg-gray-100 cursor-pointer rounded-lg">
+        <div
+          onClick={() => {
+            errorToast("Feature not available yet");
+          }}
+          className="flex shrink-effect gap-1 items-center p-2.5 hover:bg-gray-100 cursor-pointer rounded-lg"
+        >
           <img src={support} alt="support" />
           <p className="bold-poppins text-gray-600">Support</p>
         </div>

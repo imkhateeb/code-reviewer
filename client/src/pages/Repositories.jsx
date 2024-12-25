@@ -1,61 +1,41 @@
 import { ArrowsClockwise, MagnifyingGlass, Plus } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BACKEND_URL } from "../config/config";
-import axios from "axios";
 import errorToast from "../components/shared/toasters/error-toast";
-import successToast from "../components/shared/toasters/success-toast";
 import SingleRepo from "../components/features/repositories/SingleRepo";
+import { useDispatch, useSelector } from "react-redux";
+import getUserRepositories from "../redux/reducers/getUserRepositories";
 
 const Repositories = () => {
-  const [repositories, setRepositories] = useState([]);
-  const [totalRepos, setTotalRepos] = useState([]);
-  const [loadingRepos, setLoadingRepos] = useState(false);
+  const [repos, setRepos] = useState([]);
   const navigate = useNavigate();
   const userGithubData = JSON.parse(localStorage.getItem("github_user_data"));
-
-  const getRepositories = async () => {
-    setLoadingRepos(true);
-    const url = `${BACKEND_URL}/users/repository?userId=${userGithubData?.login}`;
-    const config = {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("github_user_token")}`,
-      },
-    };
-
-    try {
-      const { data } = await axios.get(url, config);
-      console.log(data);
-      if (data?.success) {
-        successToast(`${data?.data?.length} repositories fetched successfully`);
-        setRepositories(data?.data);
-        setTotalRepos(data?.data);
-      }
-    } catch (error) {
-      console.log(error);
-      errorToast(error?.response?.data?.message || "Something went wrong");
-    } finally {
-      setLoadingRepos(false);
-    }
-  };
+  const dispatch = useDispatch();
+  const { repositories, repoLoading } = useSelector((state) => state.repos);
 
   const handleSearchTerm = (value) => {
     if (value) {
-      const filteredRepos = totalRepos.filter((repo) =>
+      const filteredRepos = repositories.filter((repo) =>
         repo?.name.toLowerCase().includes(value.toLowerCase())
       );
-      setRepositories(filteredRepos);
+      setRepos(filteredRepos);
     } else {
-      setRepositories(totalRepos);
+      setRepos(repositories);
     }
   };
   useEffect(() => {
     if (localStorage.getItem("github_user_token") && userGithubData) {
-      getRepositories();
+      dispatch(getUserRepositories());
     } else {
       navigate("/auth");
     }
   }, []);
+
+  useEffect(() => {
+    if (repositories?.length > 0) {
+      setRepos(repositories);
+    }
+  }, [repositories]);
 
   return (
     <div className="p-5 max-sm:p-0 h-full w-full">
@@ -66,11 +46,11 @@ const Repositories = () => {
           <div className="w-full flex justify-between items-center">
             <div className="flex flex-col">
               <p className="text-2xl bold-poppins">Repositories</p>
-              {loadingRepos ? (
+              {repoLoading ? (
                 <p className="w-[200px] h-6 bg-gray-200 rounded-lg animate-pulse" />
-              ) : repositories?.length > 0 ? (
+              ) : repos?.length > 0 ? (
                 <p className="text-md text-gray-500">
-                  {repositories?.length} total repositories
+                  {repos?.length} total repositories
                 </p>
               ) : (
                 <p className="text-md text-gray-500">No repositories</p>
@@ -78,8 +58,10 @@ const Repositories = () => {
             </div>
             <div className="flex gap-2">
               <button
-                disabled={loadingRepos}
-                onClick={getRepositories}
+                disabled={repoLoading}
+                onClick={() => {
+                  dispatch(getUserRepositories());
+                }}
                 className="flex gap-2 items-center border-[2px] py-2.5 px-4 max-sm:p-3 max-sm:rounded-full rounded-lg cursor-pointer text-gray-500 shrink-effect"
               >
                 <ArrowsClockwise size={20} weight="bold" />
@@ -115,9 +97,9 @@ const Repositories = () => {
 
         {/* Repository rows */}
         <div className="w-full h-full overflow-y-auto">
-          {loadingRepos ? (
+          {repoLoading ? (
             <div className="flex flex-col gap-4  p-5 max-sm:p-2">
-              {[1, 2, 3, 4, 5].map((item) => (
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
                 <div
                   key={item}
                   className="w-full h-[100px] bg-gray-200 rounded-lg animate-pulse"
@@ -126,9 +108,9 @@ const Repositories = () => {
             </div>
           ) : (
             <div>
-              {repositories?.length > 0 ? (
+              {repos?.length > 0 ? (
                 <div className="flex flex-col">
-                  {repositories?.map((repo) => (
+                  {repos?.map((repo) => (
                     <SingleRepo key={repo?.id} repo={repo} />
                   ))}
                 </div>
